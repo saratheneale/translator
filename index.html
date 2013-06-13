@@ -1,0 +1,41 @@
+<!DOCTYPE= html>
+<html>
+<head></head>
+<body>
+	<h1>Translator</h1>
+
+	<input id="english_input" type="text" name="EnglishInput" placeholder="Type English">
+	<input type="Submit" onclick="display_input()">	</input>
+
+	<p id="original_text">
+
+	</p>
+	<p id="japanese_text"></p>
+	<p id="spanish_text"></p>
+	<script>
+	function display_input(){
+		var input=document.getElementById('english_input').value;
+		document.getElementById("original_text").innerHTML=input;//is this bad? Can someone inject bad code here?
+		var match = checkMatch(input);
+		if(match!=-1){
+			//do a translation
+			document.getElementById('japanese_text').innerHTML=Japanese_words[match];
+			document.getElementById('spanish_text').innerHTML=Spanish_words[match];
+		}
+		console.log(match);
+	}//end f display_input
+	var English_words = ["hi","cat","dog","goodbye"];
+	var Japanese_words=["konnnichiwa","neko","eenu","sayonara"];
+	var Spanish_words=["hola","gato","perro","adios"];
+
+	function checkMatch(data){
+		for(i=0;i<English_words.length;i++){
+			if(data===English_words[i]){
+				return i;
+			}
+		}
+		return -1; //returns -1 if no other matches
+	}//end f checkMatch
+	</script>
+</body>
+</html>
